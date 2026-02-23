@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", sans-serif;
+  
+  --color-primary-start: #667eea;
+  --color-primary-end: #764ba2;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-slate-50 text-slate-900 transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-slate-950 text-slate-100;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+  
+  .dark .glass {
+    @apply bg-slate-900/70 border-slate-800/50 shadow-2xl;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-start to-primary-end text-white font-semibold py-3 px-6 rounded-2xl shadow-lg hover:shadow-primary-start/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-2xl border border-slate-200 bg-white/50 focus:border-primary-start focus:ring-2 focus:ring-primary-start/20 outline-none transition-all duration-200;
+  }
+  
+  .dark .input-field {
+    @apply border-slate-700 bg-slate-800/50 focus:border-primary-start;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700;
+  }
+}
+
+/* Animations */
+@keyframes bubble-pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-bubble {
+  animation: bubble-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
